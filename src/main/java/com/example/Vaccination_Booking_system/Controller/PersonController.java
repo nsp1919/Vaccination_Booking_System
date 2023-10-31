@@ -2,6 +2,7 @@ package com.example.Vaccination_Booking_system.Controller;
 
 
 import com.example.Vaccination_Booking_system.DTO.RequestDto.PersonRequest;
+import com.example.Vaccination_Booking_system.DTO.ResponseDto.PersonResponse;
 import com.example.Vaccination_Booking_system.Exceptions.IdNotFoundException;
 import com.example.Vaccination_Booking_system.Model.Doctor;
 import com.example.Vaccination_Booking_system.Model.Person;
@@ -20,10 +21,10 @@ public class PersonController {
     @Autowired
     PersonService personService;
 
-    @PutMapping("/add")
-    public String addPerson(@RequestBody PersonRequest personRequest){
-        personService.addPerson(personRequest);
-        return "person added";
+    @PostMapping("/add")
+    public ResponseEntity addPerson(@RequestBody PersonRequest personRequest){
+        PersonResponse Response=personService.addPerson(personRequest);
+        return new ResponseEntity(Response,HttpStatus.OK);
     }
 //    @PutMapping("/assignDoctor")
 //    public ResponseEntity assignDoctor(@RequestParam("id1") int personId, @RequestParam("id2") int doctorId){

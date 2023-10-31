@@ -18,7 +18,7 @@ public class DoctorController {
     @Autowired
     DoctorService doctorService;
 
-    @GetMapping("/add")
+    @PostMapping("/add")
     public ResponseEntity addDoctor(@RequestBody Doctor doctor){
         String Response=doctorService.addDoctor(doctor);
         return new ResponseEntity(Response, HttpStatus.OK);

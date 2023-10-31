@@ -22,14 +22,18 @@ public class PersonService {
 
     @Autowired
     PersonRepository personRepository;
-     public void addPerson(PersonRequest personRequest) {
+     public PersonResponse addPerson(PersonRequest personRequest) {
+         
          Person person=new Person();
          person.setName(personRequest.getName());
          person.setPersonId(personRequest.getPersonId());
          person.setAge(personRequest.getAge());
          person.setGender(personRequest.getGender());
-        personRepository.save(person);
-
+         personRepository.save(person);
+         PersonResponse personResponse=new PersonResponse();
+         personResponse.setPersonId(person.getPersonId());
+         personResponse.setMessage("Person added");
+         return personResponse;
     }
 
 
